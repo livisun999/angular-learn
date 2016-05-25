@@ -1,0 +1,109 @@
+<html ng-app="node_app">
+<head>
+
+  <link href="css/app.css" type="text/css" rel="stylesheet">
+
+  <link href="css/angular-material.min.css" type="text/css" rel="stylesheet">
+  
+
+
+  <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+  <script src="js/controllers.js" type="text/javascript"></script>
+  <script src="js/ngStorage.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<script src="js/angular-animate.js" type="text/javascript"></script>
+
+
+<!-- Compiled and minified JavaScript -->
+
+<script src="js/angular-aria.min.js"></script>
+<script src="js/materialize.js" type="text/javascript"></script>
+<script src="js/angular-material.min.js" type="text/javascript"></script>
+<!-- Angular Material Javascript now available via Google CDN; version 0.9.4 used here -->
+
+<div class="container" ng-controller="node_Controller" >
+  <md-content >
+
+    <div class="row" layout="row">
+      <div class="new_node flex-100">
+        <form class="todo-form">
+          <div class="row layout-row" layout='row'>
+            <div class="input-field flex-50 div_text_">
+              <textarea id="txt_input" ng-model="todoText" class="fmaterialize-textarea" placeholder="..."></textarea>
+            </div>
+            <div class="btn_themMoi">
+              <md-button md-no-ink class="md-raised md-primary I_new_node" ng-click="addTodo()"> Add New</md-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+      <div class="app-body show_node" >
+
+          <div class="sum_of">
+            <section class="archive-control">
+              <span class="sum_ md-display-2 layout_note">{{ remaining() }} of {{ todos.length }} Done!</span>
+            </section>
+          </div>
+
+        <div layout="row" >
+          <ul class="unstyled list_node" >
+            <li ng-repeat="todo in todos track by $index" class="hover_li fade_" ng-style="{'background-color': todo.bg_cl}">
+              <span>{{todos.notica__}}</span>
+              <div class="left ">
+                <div class="node_time_">
+                  <span class="done-{{ todo.done }} time_create__ md-caption"><p>Create: {{ todo.time }}</p> </span>
+                  <span class="done-{{ todo.done }}  md-caption" ng-if="todo.time_change "><p>Change: {{ todo.time_change }}</p> </span>
+                </div>
+                <div class="node_action_">
+                  <div class=" rd_check">
+                    <div class="div_bt_check_">
+                      <md-checkbox id="{{$index}}" name="{{$index}}" ng-model="todo.done" ng-change="rd_change(todo)" class='input_check md-primary' > </md-checkbox>
+                    </div>
+                    <div class="lb_check_">
+                      <label>Done</label>
+                    </div>
+                  </div>  
+                  <div class="bt_edit">
+                       <md-button class="md-raised md-primary edit_ btn  fade_" ng-click="change(todo)" ng-if="todo.edit_text_bt"> Edit</md-button>
+                  </div>
+                  <div class="bt_remove">
+                    <md-button class="md-raised md-warn remove_" ng-click="archive($index)" ng-if="todo.edit_text_bt">Remove</md-button>
+                  </div>
+                </div>
+              </div>
+              <div class=" content_node">
+                <div class="node_change_texts" >
+                  <span class="done-{{ todo.done }} node_text"> {{ todo.text }}
+                  </span>
+                </div>
+                <form >
+                  <div class="txt_Edit_">
+                    <textarea ng-if="todo.editting" ng-model="todo.edit_text" class=" edit_txrtext fmaterialize-textarea">{{todo.text_change}}</textarea>
+                  </div>
+                  <div class="bt_save_">
+                    <md-button  ng-click="save(todo)" ng-if="todo.editting" class=" md-raised md-primary save_"> Save </md-button>
+                  </div>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </md-content>
+  </div>
+
+
+
+</body>
+</html>
+<script>
+  $(document).ready(function() {
+    $('#textarea1').val('New Text');
+    $('#textarea1').trigger('autoresize');
+    $('.fixed-action-btn').openFAB();
+    $('.fixed-action-btn').closeFAB();
+  });
+</script>
