@@ -25,27 +25,30 @@
 <!-- Angular Material Javascript now available via Google CDN; version 0.9.4 used here -->
 
 <div class="container" ng-controller="node_Controller" >
-        <md-content class="md-padding form_input" >
-            <div layout="row">
-                <form layout="row" flex='100'>
+    <md-content >
 
-                            <textarea flex="60" flex-offset='20' id="txt_input" ng-model="todoText" class="fmaterialize-textarea" placeholder="..."></textarea>
-
-                        <div class="btn_themMoi">
-                            <md-button flex="10" md-no-ink class="md-raised md-primary I_new_node" ng-click="addTodo()"> Add New</md-button>
+        <div class="row" layout="row">
+            <div class="new_node flex-100">
+                <form class="todo-form">
+                    <div class="row layout-row" layout='row'>
+                        <div class="input-field flex-50 div_text_">
+                            <textarea id="txt_input" ng-model="todoText" class="fmaterialize-textarea" placeholder="..."></textarea>
                         </div>
+                        <div class="btn_themMoi">
+                            <md-button md-no-ink class="md-raised md-primary I_new_node" ng-click="addTodo()"> Add New</md-button>
+                        </div>
+                    </div>
                 </form>
-
             </div>
-          </md-content>
-
+        </div>
         <div class="app-body show_node" >
-          <md-content class="md-padding" >
-            <div layout="column" layout-gt-xs="column" layout-sm='column' class="text_sum">
-              <h2 class="sum_ md-display-2 layout_note" flex='80' >{{ remaining() }} of {{ todos.length }} Done!</h2>
+
+            <div class="sum_of">
+                <section class="archive-control">
+                    <span class="sum_ md-display-2 layout_note">{{ remaining() }} of {{ todos.length }} Done!</span>
+                </section>
             </div>
-          </md-content>
-          <md-content>
+
             <div layout="row" >
                 <ul class="unstyled list_node" >
                     <li ng-repeat="todo in todos track by $index" class="hover_li fade_" ng-style="{'background-color': todo.bg_cl}">
@@ -74,8 +77,8 @@
                         </div>
                         <div class=" content_node">
                             <div class="node_change_texts" >
-                              <span class="done-{{ todo.done }} node_text"> {{ todo.text }}
-                              </span>
+                  <span class="done-{{ todo.done }} node_text"> {{ todo.text }}
+                  </span>
                             </div>
                             <form >
                                 <div class="txt_Edit_">
